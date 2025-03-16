@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Alert, Button, StyleSheet, TextInput, Keyboard } from 'react-native';
+import { Image, Alert, Button, StyleSheet, TextInput, Keyboard, ActivityIndicator } from 'react-native';
 
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
@@ -8,6 +8,16 @@ import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default function HomeScreen() {
   const [searchValue, onChangeSearchValue] = React.useState('');
+
+  const createTwoButtonAlert = (value:string) =>
+    Alert.alert('Alert Title', 'My Alert Msg', [
+      {
+        text: value,
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
+      },
+      {text: 'OK', onPress: () => console.log('OK Pressed')},
+    ]);
 
   return (
     <ParallaxScrollView
@@ -29,11 +39,13 @@ export default function HomeScreen() {
               <TextInput
                 style={styles.input}
                 placeholder="Click here…"
-                onSubmitEditing={Keyboard.dismiss}
+                onChangeText={onChangeSearchValue}
+                value={searchValue}
+                onSubmitEditing={() => { Keyboard.dismiss; createTwoButtonAlert(searchValue)}}
               />
               <Button
-                onPress={() => Alert.alert('Simple Button pressed')}
-                title="Learn More"
+                onPress={() => createTwoButtonAlert(searchValue)}
+                title="Search"
                 color="blue"
                 accessibilityLabel="Learn more about this purple button"
               />
@@ -46,6 +58,12 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
+  off:{
+    display: 'none'
+  },
+  on:{
+    display:'flex'
+  },
   container: {
     flexDirection: 'row',
     flex: 1,
