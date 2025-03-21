@@ -23,20 +23,23 @@ export default function HomeScreen() {
   };
   const closeAlert = () => {
     setAlertVisible(false);
+    // clear search
+    onChangeSearchValue("");
   };
 
 
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
+      headerBackgroundColor={{ light: '#C1D7CA', dark: '#C1D7CA' }}
       headerImage={
+        // AI agent image
         <Image
-          source={require('@/assets/images/partial-react-logo.png')}
+          source={require('@/assets/images/FinanceLogot.png')}
           style={styles.reactLogo}
         />
       }>
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">AI Finance</ThemedText>
+        {/* <ThemedText type="title">AI Finance</ThemedText> */}
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Search: </ThemedText>
@@ -57,7 +60,7 @@ export default function HomeScreen() {
               <Modal visible={loading} transparent={true} animationType="fade">
                 <View style={styles.modalOverlay}>
                   <View style={styles.modalContent}>
-                    <ActivityIndicator size="large" color="#0000ff" />
+                    <ActivityIndicator size="large" color="#C1D7CA" />
                     <Text style={styles.loadingText}>Loading...</Text>
                   </View>
                 </View>
@@ -67,7 +70,7 @@ export default function HomeScreen() {
                   <View style={styles.modalContent}>
                     <Text style={styles.alertText}>Search Successful</Text>
                     {/* need function to send string to AI agent */}
-                    <Button color={'#80EF80'} title="OK" onPress={ closeAlert} />
+                    <Button color={'#C1D7CA'} title="OK" onPress={ closeAlert} />
                   </View>
                 </View>
               </Modal>
@@ -112,8 +115,9 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   reactLogo: {
-    height: 178,
-    width: 290,
+    maxHeight: 250,
+    maxWidth: 250,
+    flex:1,
     bottom: 0,
     left: 0,
     position: 'absolute',
