@@ -1,6 +1,5 @@
 import React from 'react';
-import { Image, Button, StyleSheet, TextInput, Keyboard, ActivityIndicator, Modal, View, Text } from 'react-native';
-
+import { Image, Button, StyleSheet, TextInput, Keyboard, ActivityIndicator, Modal, View, Text} from 'react-native';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
@@ -10,6 +9,7 @@ export default function HomeScreen() {
   const [searchValue, onChangeSearchValue] = React.useState('');
   const [loading, setLoading] = React.useState(false);
   const [alertVisible, setAlertVisible] = React.useState(false);
+
 
   const searching = () => {
     //needs to set condition for if search successful then navigate else display error
@@ -65,8 +65,9 @@ export default function HomeScreen() {
               <Modal visible={alertVisible} transparent={true} animationType="fade">
                 <View style={styles.modalOverlay}>
                   <View style={styles.modalContent}>
-                    <Text style={styles.alertText}>Search Failed</Text>
-                    <Button title="OK" onPress={closeAlert} />
+                    <Text style={styles.alertText}>Search Successful</Text>
+                    {/* need function to send string to AI agent */}
+                    <Button color={'#80EF80'} title="OK" onPress={ closeAlert} />
                   </View>
                 </View>
               </Modal>
@@ -137,4 +138,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginBottom: 10,
   },
+  navigateBtn:{
+    color:'#88E788'
+  }
 });
